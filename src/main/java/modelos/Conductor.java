@@ -1,10 +1,14 @@
-package app;
+package modelos;
 
 public class Conductor {
 
     public String nombre;
     public String apellidos;
     public int numeroConductor;
+
+    public Conductor (){
+
+    }
 
     public Conductor(String nombre, String apellidos, int numeroConductor) {
         this.nombre = nombre;

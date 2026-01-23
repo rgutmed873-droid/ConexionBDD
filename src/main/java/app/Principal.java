@@ -2,20 +2,21 @@ package app;
 
 
 
+import dao.DriverDAO;
+import modelos.Conductor;
+
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Principal {
 
+    public static void main(String[] args) {
 
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/AUCORSA";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
-
-    static void main(String[] args) {
+        ArrayList<Conductor> conductores = new ArrayList<>();
 
 
-
+        DriverDAO driverDAO = new driverDAO();
         int opcion = 0;
 
         Scanner sc = new Scanner(System.in);
@@ -31,54 +32,19 @@ public class Principal {
             opcion = sc.nextInt();
             switch (opcion){
                 case 1:
-                    consultarConductor();
+                    System.out.println(" Dime numero de conductor a consultar");
+                    int numDriver = sc.nextInt();
+                    conductores.add(driverDAO.consultarConductor(numDriver));
+                    conductores.getFirst().getNombre();
                     break;
                 case 2:
-                    insertarConductor();
+
                     break;
                 case 3:
-                    borrarConductor();
+
                     break;    
             }
         }while (opcion != 0);
-
-    }
-
-    private static void borrarConductor() {
-
-    }
-
-    private static void insertarConductor() {
-        Connection con;
-        try {
-            con = DriverManager.getConnection(URL,USER,PASSWORD);
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private static void consultarConductor() {
-
-        Connection con;
-        try{
-            con = DriverManager.getConnection(URL,USER,PASSWORD);
-            Statement s = con.createStatement();
-
-            ResultSet rs = s.executeQuery("select * from CONDUCTOR");
-
-            while (rs.next()){
-                System.out.println(rs.getInt(1));
-                System.out.println(rs.getString("nombre"));
-
-            }
-            rs.close();
-            s.close();
-            con.close();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
     }
 
