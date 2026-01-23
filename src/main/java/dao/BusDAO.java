@@ -10,22 +10,35 @@ public class BusDAO {
     public boolean insertarAutobusRta(int numBus, int numRuta){
 
         try(Connection con = ConexionDB.getConexion()){
+            try {
+                con.setAutoCommit(false);
 
-            con.setAutoCommit(false);
+                String sql = "INSERT INTO BUS VALUES '?', '?', '?'";
+                PreparedStatement ps = con.prepareStatement(sql);
 
-            String sql = "INSERT INTO BUS VALUES '?', '?', '?'";
-            PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, "B001");
+                ps.setString(2, "Urbano");
+                ps.setString(3, "LC001");
 
-            ps.setString(1, "B001");
-            ps.setString(2,"Urbano");
-            ps.setString(3,"LC001");
+                ps.executeUpdate();
 
-            ps.executeUpdate();
+                sql = "INSERT INTO BDP VALUES ?,?,?";
+                ps.setString(1, "B001");
+                ps.setString(2, "Urbano");
+                ps.setString(3, "LC001");
 
+                ps.executeUpdate();
 
+                con.commit();
+                return true;
+            }catch (Exception e){
 
+            }
         }catch (Exception e){
+            con.rollback();
             throw new RuntimeException(e);
+        }finally {
+            con.setAutoCommit(true);
         }
 
 
