@@ -4,6 +4,7 @@ import db.ConexionDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class BusDAO {
 
@@ -34,16 +35,17 @@ public class BusDAO {
                 return true;
             } catch (Exception e) {
 
+
+                con.rollback();
+                throw new RuntimeException(e);
+            } finally {
+                con.setAutoCommit(true);
             }
-        } catch (Exception e) {
-            con.rollback();
+
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-        } finally {
-            con.setAutoCommit(true);
         }
 
-
-        return true;
 
     }
 }
