@@ -35,7 +35,6 @@ public class BusDAO {
                 return true;
             } catch (Exception e) {
 
-
                 con.rollback();
                 throw new RuntimeException(e);
             } finally {
