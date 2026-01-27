@@ -16,7 +16,7 @@ public class Principal {
         ArrayList<Conductor> conductores = new ArrayList<>();
 
 
-        DriverDAO driverDAO = new driverDAO();
+        DriverDAO driverDAO = new DriverDAO();
         int opcion = 0;
 
         Scanner sc = new Scanner(System.in);

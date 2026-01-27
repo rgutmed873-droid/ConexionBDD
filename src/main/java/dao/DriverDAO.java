@@ -8,7 +8,6 @@ import java.sql.*;
 public class DriverDAO {
 
 
-
     public Conductor consultarConductor(int numConductor) {
 
         String sql = "select nombre, apellido from CONDUCTOR WHERE numConductor = ?";

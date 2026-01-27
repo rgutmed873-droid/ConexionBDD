@@ -7,10 +7,11 @@ import java.sql.PreparedStatement;
 
 public class BusDAO {
 
-    public boolean insertarAutobusRta(int numBus, int numRuta){
+    public boolean insertarAutobusRta(int numBus, int numRuta) {
 
-        try(Connection con = ConexionDB.getConexion()){
+        try (Connection con = ConexionDB.getConexion()) {
             try {
+
                 con.setAutoCommit(false);
 
                 String sql = "INSERT INTO BUS VALUES '?', '?', '?'";
@@ -31,16 +32,15 @@ public class BusDAO {
 
                 con.commit();
                 return true;
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             con.rollback();
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             con.setAutoCommit(true);
         }
-
 
 
         return true;
