@@ -16,6 +16,13 @@ public class Principal {
         ArrayList<Conductor> conductores = new ArrayList<>();
 
 
+        menu(conductores);
+
+
+    }
+
+    private static void menu(ArrayList<Conductor> conductores) {
+
         DriverDAO driverDAO = new DriverDAO();
         int opcion;
 
@@ -42,13 +49,12 @@ public class Principal {
                     break;
                 case 3:
 
-                break;
+                    break;
                 case 0:
                     System.out.println("Saliendo de la aplicación");
-                break;
+                    break;
             }
         }while (opcion != 0);
-
     }
 
 

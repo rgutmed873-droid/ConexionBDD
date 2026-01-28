@@ -19,7 +19,7 @@ public class DriverDAO {
             ps.setInt(1,numConductor);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()){
+            while (rs.next()){
 
                 Conductor c = new Conductor();
 
