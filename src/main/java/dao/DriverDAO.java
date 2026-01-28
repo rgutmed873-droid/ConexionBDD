@@ -20,7 +20,9 @@ public class DriverDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()){
+
                 Conductor c = new Conductor();
+
                 c.setNombre(rs.getString("nombre"));
                 c.setNombre(rs.getString("apellido"));
                 return c;

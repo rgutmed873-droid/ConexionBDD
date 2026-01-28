@@ -17,7 +17,7 @@ public class Principal {
 
 
         DriverDAO driverDAO = new DriverDAO();
-        int opcion = 0;
+        int opcion;
 
         Scanner sc = new Scanner(System.in);
 
@@ -42,7 +42,10 @@ public class Principal {
                     break;
                 case 3:
 
-                    break;    
+                break;
+                case 0:
+                    System.out.println("Saliendo de la aplicación");
+                break;
             }
         }while (opcion != 0);
 
