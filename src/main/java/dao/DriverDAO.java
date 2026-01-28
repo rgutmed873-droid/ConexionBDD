@@ -11,22 +11,21 @@ public class DriverDAO {
     public Conductor consultarConductor(int numConductor) {
 
         String sql = "select nombre, apellido from CONDUCTOR WHERE numConductor = ?";
-        Conductor conductorConsultado = new Conductor();
 
         try (Connection con = ConexionDB.getConexion()){
-
 
             PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setInt(1,numConductor);
             ResultSet rs = ps.executeQuery();
 
-            while (rs.next()){
-                conductorConsultado.setNombre(rs.getString("nombre"));
-                conductorConsultado.setNombre(rs.getString("apellido"));
-
+            if (rs.next()){
+                Conductor c = new Conductor();
+                c.setNombre(rs.getString("nombre"));
+                c.setNombre(rs.getString("apellido"));
+                return c;
             }
-            return conductorConsultado;
+            return null;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

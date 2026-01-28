@@ -8,28 +8,24 @@ import java.sql.SQLException;
 
 public class BusDAO {
 
-    public boolean insertarAutobusRta(int numBus, int numRuta) {
+    public boolean insertarAutobusRta(String registro, int numRuta, String tipo) {
+
+        String sqlBus = "INSERT INTO BUS (registro, tipo) VALUES (?,?)";
+        String sqlBDP = "INSERT INTO BDP (registro, numRuta) VALUES (?,?)";
 
         try (Connection con = ConexionDB.getConexion()) {
-            try {
+            con.setAutoCommit(false);
+            try (PreparedStatement psBus = con.prepareStatement(sqlBus);
+                 PreparedStatement psBDP = con.prepareStatement(sqlBDP)) {
 
-                con.setAutoCommit(false);
+                //BUS
+                psBus.setString(1,registro);
+                psBus.setString(2,tipo);
+                psBus.executeUpdate();
 
-                String sql = "INSERT INTO BUS VALUES '?', '?', '?'";
-                PreparedStatement ps = con.prepareStatement(sql);
-
-                ps.setString(1, "B001");
-                ps.setString(2, "Urbano");
-                ps.setString(3, "LC001");
-
-                ps.executeUpdate();
-
-                sql = "INSERT INTO BDP VALUES ?,?,?";
-                ps.setString(1, "B001");
-                ps.setString(2, "Urbano");
-                ps.setString(3, "LC001");
-
-                ps.executeUpdate();
+                psBDP.setString(1,registro);
+                psBDP.setInt(2,numRuta);
+                psBDP.executeUpdate();
 
                 con.commit();
                 return true;
