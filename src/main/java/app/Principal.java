@@ -16,6 +16,64 @@ public class Principal {
 
     public static void main(String[] args) {
 
+
+        ArrayList<Conductor> conductores = new ArrayList<>();
+
+
+        menu(conductores);
+
+
+    }
+
+    private static void menu(ArrayList<Conductor> conductores) {
+
+        DriverDAO driverDAO = new DriverDAO();
+        int opcion;
+
+        Scanner sc = new Scanner(System.in);
+
+        //Para hacer:
+        // Insertar bus, conductor, lugar y ruta
+        // consultas de bus, lugar y ruta CONDUCTOR YA TENGO
+        // Actualizar rutas por dias a la semana
+        // borrar rutas, bus, conductor y lugar
+        // Consultas de datos de conductor por numdriver
+        // Dias a la semana preguntando la ciudad
+        // datos de los conductores que conducen un bus por registro de numero de bus
+
+        do {
+            System.out.println("Bienvenido al sistema de AUCORSA");
+            System.out.println("Que desea hacer?");
+            System.out.println("\t 1. Consultar conductor");
+            System.out.println("\t 2. Insertar conductor");
+            System.out.println("\t 3. Borrar conductor");
+            System.out.println("\t 0. Salir");
+            opcion = sc.nextInt();
+            switch (opcion){
+                case 1:
+                    System.out.println(" Dime numero de conductor a consultar");
+                    int numDriver = sc.nextInt();
+                    conductores.add(driverDAO.consultarConductor(numDriver));
+                    System.out.println(conductores.getFirst().getNombre() + " " +  conductores.getFirst().getApellidos());
+                    break;
+                case 2:
+                    System.out.println("Dime los datos para introducir conductor");
+
+                    break;
+                case 3:
+
+                    break;
+                case 0:
+                    System.out.println("Saliendo de la aplicación");
+                    break;
+            }
+        }while (opcion != 0);
+    }
+
+
+    /**
+     * Para más adelante para las interfaz
+     */
 //        JFrame miVentana = new JFrame("Curro es mi primera ventana");
 //
 //        miVentana.setTitle("Aucorsa");
@@ -78,59 +136,4 @@ public class Principal {
 //
 //        miVentana.add(panelPrincipal);
 //        miVentana.setVisible(true);
-
-        ArrayList<Conductor> conductores = new ArrayList<>();
-
-
-        menu(conductores);
-
-
-    }
-
-    private static void menu(ArrayList<Conductor> conductores) {
-
-        DriverDAO driverDAO = new DriverDAO();
-        int opcion;
-
-        Scanner sc = new Scanner(System.in);
-
-        //Para hacer:
-        // Insertar bus, conductor, lugar y ruta
-        // consultas de bus, lugar y ruta CONDUCTOR YA TENGO
-        // Actualizar rutas por dias a la semana
-        // borrar rutas, bus, conductor y lugar
-        // Consultas de datos de conductor por numdriver
-        // Dias a la semana preguntando la ciudad
-        // datos de los conductores que conducen un bus por registro de numero de bus
-
-        do {
-            System.out.println("Bienvenido al sistema de AUCORSA");
-            System.out.println("Que desea hacer?");
-            System.out.println("\t 1. Consultar conductor");
-            System.out.println("\t 2. Insertar conductor");
-            System.out.println("\t 3. Borrar conductor");
-            System.out.println("\t 0. Salir");
-            opcion = sc.nextInt();
-            switch (opcion){
-                case 1:
-                    System.out.println(" Dime numero de conductor a consultar");
-                    int numDriver = sc.nextInt();
-                    conductores.add(driverDAO.consultarConductor(numDriver));
-                    System.out.println(conductores.getFirst().getNombre() + " " +  conductores.getFirst().getApellidos());
-                    break;
-                case 2:
-                    System.out.println("Dime los datos para introducir conductor");
-
-                    break;
-                case 3:
-
-                    break;
-                case 0:
-                    System.out.println("Saliendo de la aplicación");
-                    break;
-            }
-        }while (opcion != 0);
-    }
-
-
 }
