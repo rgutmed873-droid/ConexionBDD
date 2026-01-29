@@ -94,6 +94,14 @@ public class Principal {
 
         Scanner sc = new Scanner(System.in);
 
+        //Para hacer:
+        // Insertar bus, conductor, lugar y ruta
+        // consultas de bus, lugar y ruta CONDUCTOR YA TENGO
+        // Actualizar rutas por dias a la semana
+        // borrar rutas, bus, conductor y lugar
+        // Consultas de datos de conductor por numdriver
+        // Dias a la semana preguntando la ciudad
+        // datos de los conductores que conducen un bus por registro de numero de bus
 
         do {
             System.out.println("Bienvenido al sistema de AUCORSA");
@@ -111,6 +119,7 @@ public class Principal {
                     System.out.println(conductores.getFirst().getNombre() + " " +  conductores.getFirst().getApellidos());
                     break;
                 case 2:
+                    System.out.println("Dime los datos para introducir conductor");
 
                     break;
                 case 3:
