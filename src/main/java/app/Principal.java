@@ -19,7 +19,6 @@ public class Principal {
 
         ArrayList<Conductor> conductores = new ArrayList<>();
 
-
         menu(conductores);
 
 
