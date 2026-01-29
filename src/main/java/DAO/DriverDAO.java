@@ -24,7 +24,7 @@ public class DriverDAO {
                 Conductor c = new Conductor();
 
                 c.setNombre(rs.getString("nombre"));
-                c.setNombre(rs.getString("apellido"));
+                c.setApellidos(rs.getString("apellido"));
                 return c;
             }
             return null;

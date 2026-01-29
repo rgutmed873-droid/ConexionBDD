@@ -108,7 +108,7 @@ public class Principal {
                     System.out.println(" Dime numero de conductor a consultar");
                     int numDriver = sc.nextInt();
                     conductores.add(driverDAO.consultarConductor(numDriver));
-                    conductores.getFirst().getNombre();
+                    System.out.println(conductores.getFirst().getNombre() + " " +  conductores.getFirst().getApellidos());
                     break;
                 case 2:
 
