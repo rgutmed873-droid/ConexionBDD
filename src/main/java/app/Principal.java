@@ -4,7 +4,9 @@ package app;
 
 import DAO.DriverDAO;
 import DAO.RutaDAO;
+import modelos.Bus;
 import modelos.Conductor;
+import modelos.Lugar;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,13 +19,15 @@ public class Principal {
 
         ArrayList<Conductor> conductores = new ArrayList<>();
         ArrayList<RutaDAO> ruta = new ArrayList<>();
+        ArrayList<Bus> bus = new ArrayList<>();
+        ArrayList<Lugar> lugar = new ArrayList<>();
 
-        menu(conductores, ruta);
+        menu(conductores, ruta, bus);
 
 
     }
 
-    private static void menu(ArrayList<Conductor> conductores, ArrayList<RutaDAO> ruta) {
+    private static void menu(ArrayList<Conductor> conductores, ArrayList<RutaDAO> ruta, ArrayList<Bus> bus) {
 
         DriverDAO driverDAO = new DriverDAO();
         RutaDAO rutaDAO = new RutaDAO();
