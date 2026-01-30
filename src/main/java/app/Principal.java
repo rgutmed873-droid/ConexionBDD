@@ -3,11 +3,9 @@ package app;
 
 
 import DAO.DriverDAO;
+import DAO.RutaDAO;
 import modelos.Conductor;
 
-import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,15 +16,17 @@ public class Principal {
 
 
         ArrayList<Conductor> conductores = new ArrayList<>();
+        ArrayList<RutaDAO> ruta = new ArrayList<>();
 
-        menu(conductores);
+        menu(conductores, ruta);
 
 
     }
 
-    private static void menu(ArrayList<Conductor> conductores) {
+    private static void menu(ArrayList<Conductor> conductores, ArrayList<RutaDAO> ruta) {
 
         DriverDAO driverDAO = new DriverDAO();
+        RutaDAO rutaDAO = new RutaDAO();
         int opcion;
 
         Scanner sc = new Scanner(System.in);
@@ -43,10 +43,19 @@ public class Principal {
         do {
             System.out.println("Bienvenido al sistema de AUCORSA");
             System.out.println("Que desea hacer?");
-            System.out.println("\t 1. Consultar conductor");
-            System.out.println("\t 2. Insertar conductor");
-            System.out.println("\t 3. Borrar conductor");
-            System.out.println("\t 0. Salir");
+            System.out.println("\n 1. Consultar conductor"+
+                               "\n 2. Insertar conductor"+
+                                "\n 3. Borrar conductor"+
+                                "\n 4. Consultar bus"+
+                                "\n 5. Insertar bus"+
+                                "\n 6. Borrar bus"+
+                                "\n 7. Consultar lugar"+
+                                "\n 8. Insertar lugar"+
+                                "\n 9. Borrar lugar"+
+                                "\n 10. Consultar ruta"+
+                                "\n 11. Insertar ruta"+
+                                "\n 12. Borrar ruta"+
+                                "\n 0. Salir");
             opcion = sc.nextInt();
             switch (opcion){
                 case 1:
@@ -62,12 +71,44 @@ public class Principal {
                 case 3:
 
                     break;
+                case 4:
+
+                    break;
+                case 5:
+
+                break;
+                case 6:
+
+                break;
+                case 7:
+
+                break;
+                case 8:
+
+                break;
+                case 9:
+
+                break;
+                case 10:
+
+                break;
+                case 11:
+                    System.out.println("Dime los datos de la ruta");
+                    int numRuta = sc.nextInt();
+                    String dia = sc.nextLine();
+                    int idLugar = sc.nextInt();
+                    ruta.add(rutaDAO.insertRuta(numRuta,dia,idLugar));
+                break;
+                case 12:
+
+                break;
                 case 0:
                     System.out.println("Saliendo de la aplicación");
                     break;
             }
         }while (opcion != 0);
     }
+
 
 
     /**
