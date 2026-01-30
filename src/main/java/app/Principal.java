@@ -4,6 +4,7 @@ package app;
 
 import DAO.DriverDAO;
 import DAO.RutaDAO;
+import View.Driverview;
 import modelos.Bus;
 import modelos.Conductor;
 import modelos.Lugar;
@@ -15,6 +16,10 @@ public class Principal {
 
 
     public static void main(String[] args) {
+
+
+        Driverview vistaConductor = new Driverview();
+        DriverController control = new DriverController();
 
 
         ArrayList<Conductor> conductores = new ArrayList<>();
