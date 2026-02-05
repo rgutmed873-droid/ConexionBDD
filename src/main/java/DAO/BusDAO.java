@@ -1,6 +1,7 @@
 package DAO;
 
 import db.ConexionDB;
+import modelos.Bus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,39 +9,20 @@ import java.sql.SQLException;
 
 public class BusDAO {
 
-    public boolean insertarAutobusRta(String registro, int numRuta, String tipo) {
+    public boolean insertarBus(Bus bus) {
+        String sqlinsertarBus = "INSERT INTO Bus (register, type, license) VALUES (?, ?, ?)";
 
-        String sqlBus = "INSERT INTO BUS (registro, tipo) VALUES (?,?)";
-        String sqlBDP = "INSERT INTO BDP (registro, numRuta) VALUES (?,?)";
+       try (Connection con = ConexionDB.getConexion();
+            PreparedStatement ps = con.prepareStatement(sqlinsertarBus)){
 
-        try (Connection con = ConexionDB.getConexion()) {
-            con.setAutoCommit(false);
-            try (PreparedStatement psBus = con.prepareStatement(sqlBus);
-                 PreparedStatement psBDP = con.prepareStatement(sqlBDP)) {
+           ps.setString(1,bus.getRegistro());
+           ps.setString(2,bus.getTipo());
+           ps.setString(3,bus.getLicencia());
 
-                //BUS
-                psBus.setString(1,registro);
-                psBus.setString(2,tipo);
-                psBus.executeUpdate();
-
-                psBDP.setString(1,registro);
-                psBDP.setInt(2,numRuta);
-                psBDP.executeUpdate();
-
-                con.commit();
-                return true;
-            } catch (Exception e) {
-
-                con.rollback();
-                throw new RuntimeException(e);
-            } finally {
-                con.setAutoCommit(true);
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
+           return ps.executeUpdate() > 0;
+       }catch (SQLException e){
+           e.printStackTrace();
+           return false;
+       }
     }
 }
