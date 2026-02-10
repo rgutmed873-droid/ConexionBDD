@@ -9,11 +9,10 @@ import java.sql.SQLException;
 
 public class BusDAO {
 
-    public boolean insertarBus(Bus bus) {
+    public boolean insertarBus(Bus bus, Connection con) {
         String sqlinsertarBus = "INSERT INTO Bus (register, type, license) VALUES (?, ?, ?)";
 
-       try (Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sqlinsertarBus)){
+       try (PreparedStatement ps = con.prepareStatement(sqlinsertarBus)){
 
            ps.setString(1,bus.getRegistro());
            ps.setString(2,bus.getTipo());

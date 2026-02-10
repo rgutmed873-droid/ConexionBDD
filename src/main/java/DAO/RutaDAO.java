@@ -14,11 +14,11 @@ public class RutaDAO {
 
 
     //Metodo para insertar la ruta (registro en BDP)
-    public boolean insertRuta(String registro, int numeroConductor, int idLugar, String diaSemana) throws SQLException{
+    public boolean insertRuta(String registro, int numeroConductor, int idLugar, String diaSemana, Connection con) throws SQLException{
     String sqlInsertarRuta = "INSERT INTO BDP (registro,numeroCoductor, idLugar, diaSemana) VALUE (?,?,?,?)";
 
-        try (Connection con = ConexionDB.getConexion()) {
-            try (PreparedStatement ps = con.prepareStatement(sqlInsertarRuta)) {
+
+        try (PreparedStatement ps = con.prepareStatement(sqlInsertarRuta)) {
 
                 ps.setString(1, registro);
                 ps.setInt(2, numeroConductor);
@@ -27,7 +27,6 @@ public class RutaDAO {
 
                 return ps.executeUpdate() > 0;
 
-            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -55,11 +54,10 @@ public class RutaDAO {
     }
 
     //Metodo para borrar rutas
-    public boolean eliminarRuta(int numeroConductor, int idLugar, String registro){
+    public boolean eliminarRuta(int numeroConductor, int idLugar, String registro, Connection con){
         String sqlEliminarRuta = "DELETE FROM BDP WHERE registro = ?";
 
-        try (Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sqlEliminarRuta)){
+        try (PreparedStatement ps = con.prepareStatement(sqlEliminarRuta)){
 
             ps.setInt(1,numeroConductor);
             ps.setInt(2,idLugar);
@@ -72,12 +70,12 @@ public class RutaDAO {
         }
     }
 
-    public String consultaDiaCiudad(String ciudad) throws SQLException {
+    public String consultaDiaCiudad(String ciudad, Connection con) throws SQLException {
 
         String sqlConsultarRuta = "SELECT diaSemana from BDP b JOIN place p ON b.idLugar = p.idLugar Where p.city = ? Limit 1";
 
-        try (Connection con = ConexionDB.getConexion()){
-            PreparedStatement ps = con.prepareStatement(sqlConsultarRuta);
+        try (PreparedStatement ps = con.prepareStatement(sqlConsultarRuta);){
+
 
             ps.setString(1,ciudad);
             ResultSet rs = ps.executeQuery();
@@ -94,11 +92,11 @@ public class RutaDAO {
 
     }
 
-    public List<Conductor> consultarConductorBus(String registro) throws SQLException {
+    public List<Conductor> consultarConductorBus(String registro, Connection con) throws SQLException {
         List<Conductor> conductores = new ArrayList<>();
+
         String sqlConsultaConductorBus = "SELECT d.numeroConductor, d.nombre, d.apellido, FROM Conductor d JOIN BDP ON d.numeroConductor = b.numeroConductor = b.numeroConductor WHERE b.registro = ?";
-        try (Connection con = ConexionDB.getConexion()){
-            PreparedStatement ps = con.prepareStatement(sqlConsultaConductorBus);
+        try (PreparedStatement ps = con.prepareStatement(sqlConsultaConductorBus)){
 
             ps.setString(1,registro);
             ResultSet rs = ps.executeQuery();

@@ -8,14 +8,12 @@ import java.sql.*;
 public class DriverDAO {
 
     //Metodo para consultar los conductores
-    public Conductor consultarConductor(int numConductor) throws SQLException {
+    public Conductor consultarConductor(int numConductor, Connection con) throws SQLException {
 
         String sqlConsultaConductor = "select nombre, apellido from CONDUCTOR WHERE numConductor = ?";
 
+        try (PreparedStatement ps = con.prepareStatement(sqlConsultaConductor)){
 
-        try (Connection con = ConexionDB.getConexion()){
-
-            PreparedStatement ps = con.prepareStatement(sqlConsultaConductor);
 
             ps.setInt(1,numConductor);
             ResultSet rs = ps.executeQuery();
@@ -36,11 +34,10 @@ public class DriverDAO {
 
     }
 
-    public boolean insertarConductor(Conductor conductor) throws SQLException {
+    public boolean insertarConductor(Conductor conductor, Connection con) throws SQLException {
         String sqlInsertarConductor = "INSERT INTO CONDUCTOR (nombre, apellido, numeroConductor) VALUES (?, ?,?)";
 
-        try (Connection con = ConexionDB.getConexion()){
-            PreparedStatement ps = con.prepareStatement(sqlInsertarConductor);
+        try (PreparedStatement ps = con.prepareStatement(sqlInsertarConductor)){
 
             ps.setString(1, conductor.getNombre());
             ps.setString(2,conductor.getApellidos());
