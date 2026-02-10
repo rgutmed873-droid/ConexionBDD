@@ -20,7 +20,7 @@ import java.util.Scanner;
 
 public class Principal {
 
-
+    //Intentar añadir entorno gráfico para así practicar y yo aprender hacerlo
 
     public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);
