@@ -39,7 +39,7 @@ public class Principal {
             try {
                 switch (opcion) {
                     case 1:
-
+                    //Insertar Bus
                     System.out.println("Dime el número de registro del bus: ");
                     String registro = sc.nextLine();
 
@@ -61,6 +61,7 @@ public class Principal {
 
                     break;
                     case 2:
+                    //Insertar Conductor
                     System.out.println("Nombre del conductor");
                     String nombre = sc.nextLine();
 
@@ -81,6 +82,7 @@ public class Principal {
                     }
                     break;
                     case 3:
+                    //Insertar Lugar
                     System.out.println("Dime el id del lugar");
                     int idLugar = sc.nextInt();
 
@@ -103,6 +105,7 @@ public class Principal {
                     }
                     break;
                     case 4:
+                    //Insertar Ruta
                     System.out.println("Introduce el registro del bus");
                     String registroBus = sc.nextLine();
 
@@ -124,6 +127,7 @@ public class Principal {
                     }
                     break;
                     case 5:
+                    // Actualizar día de ruta
                     System.out.println("Dime el registro del bus");
                     String registroDiaRuta = sc.nextLine();
 
@@ -145,6 +149,7 @@ public class Principal {
                     }
                     break;
                     case 6:
+                    // Eliminar Ruta
                     System.out.println("Introduce el número del conductor");
                     int numConducEliminar =  sc.nextInt();
 
@@ -163,6 +168,7 @@ public class Principal {
                     }
                     break;
                     case 7:
+                    //Consultar conductor por número de conductor
                     System.out.println("Dime el número del conductor");
                     int numConductorConsulta = sc.nextInt();
 
@@ -175,6 +181,7 @@ public class Principal {
                     }
                     break;
                     case 8:
+                    //Consultar día de ruta por ciudad
                     System.out.println("Introduce la ciudad");
                     String ciudad = sc.nextLine();
 
