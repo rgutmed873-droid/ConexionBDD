@@ -9,6 +9,12 @@ import java.sql.SQLException;
 
 public class LugarDAO {
 
+    /**
+     * Metodo para insertar un nuevo Lugar en la tabla place
+     * @param lugar Atributo para obtener los datos del modelo Lugar
+     * @return
+     * @throws SQLException
+     */
     public boolean insertarLugar(Lugar lugar) throws SQLException {
 
         String sqlInsertarLugar = "INSERT INTO LUGAR (idlugar,ciudad,sitio,cp) VALUES (?,?,?,?)";

@@ -13,7 +13,17 @@ import java.util.List;
 public class RutaDAO {
 
 
-    //Metodo para insertar la ruta (registro en BDP)
+    /**
+     * Metodo para insertar la ruta en la tabla BDP que es la ruta
+     * @param registro Variable de Bus clave principal de la tabla Bus
+     * @param numeroConductor Variable de Conductor clave principal de la tabla Conductor
+     * @param idLugar Variable de Lugar clave principal de la tabla Lugar
+     * @param diaSemana Variable String para el los días de la semana de las rutas
+     * @param con Establezco el parámetro de la conexión y así no tiene que estar en el metodo
+     * @return
+     * @throws SQLException
+     */
+
     public boolean insertRuta(String registro, int numeroConductor, int idLugar, String diaSemana, Connection con) throws SQLException{
     String sqlInsertarRuta = "INSERT INTO BDP (registro,numeroCoductor, idLugar, diaSemana) VALUE (?,?,?,?)";
 
@@ -33,13 +43,21 @@ public class RutaDAO {
 
     }
 
-    //Metodo para actualizar dias de la semana
-    public boolean actualizarDiaRuta(String registro, int numeroConductor, int idLugar, String nuevoDia) throws SQLException {
+    /**
+     * Metodo para actualizar días de la semana
+     * @param registro Variable de Bus clave principal de la tabla Bus
+     * @param numeroConductor Variable de Conductor clave principal de la tabla Conductor
+     * @param idLugar Variable de Lugar clave principal de la tabla Lugar
+     * @param nuevoDia Variable String para añadir nuevo día para su actualizacion
+     * @return
+     * @throws SQLException
+     */
+
+    public boolean actualizarDiaRuta(String registro, int numeroConductor, int idLugar, String nuevoDia, Connection con) throws SQLException {
 
         String sqlActualizarDia = "UPDATE BDP SET diaSemana = ? WHERE registro = ?";
 
-        try(Connection con = ConexionDB.getConexion();
-            PreparedStatement ps = con.prepareStatement(sqlActualizarDia)) {
+        try(PreparedStatement ps = con.prepareStatement(sqlActualizarDia)) {
 
             ps.setString(1,nuevoDia);
             ps.setString(2,registro);
@@ -53,7 +71,15 @@ public class RutaDAO {
         }
     }
 
-    //Metodo para borrar rutas
+    /**
+     * Metodo para eliminar una ruta
+     * @param numeroConductor Variable de Conductor clave principal de la tabla Conductor
+     * @param idLugar Variable de Lugar clave principal de la tabla Lugar
+     * @param registro Variable de Bus clave principal de la tabla Bus
+     * @param con Establezco el parámetro de la conexión y así no tiene que estar en el metodo
+     * @return
+     */
+
     public boolean eliminarRuta(int numeroConductor, int idLugar, String registro, Connection con){
         String sqlEliminarRuta = "DELETE FROM BDP WHERE registro = ?";
 
@@ -70,6 +96,13 @@ public class RutaDAO {
         }
     }
 
+    /**
+     * Metodo para consultar día de ruta por ciudad
+     * @param ciudad Variable String que paso para consultar el día de la ruta que le corresponde a la ciudad
+     * @param con Establezco el parámetro de la conexión y así no tiene que estar en el metodo
+     * @return
+     * @throws SQLException
+     */
     public String consultaDiaCiudad(String ciudad, Connection con) throws SQLException {
 
         String sqlConsultarRuta = "SELECT diaSemana from BDP b JOIN place p ON b.idLugar = p.idLugar Where p.city = ? Limit 1";
@@ -92,6 +125,13 @@ public class RutaDAO {
 
     }
 
+    /**
+     * Metodo para consultar conductores por bus
+     * @param registro Variable que paso en la consulta del número del bus para consultar los conductores
+     * @param con Establezco el parámetro de la conexión y así no tiene que estar en el metodo
+     * @return
+     * @throws SQLException
+     */
     public List<Conductor> consultarConductorBus(String registro, Connection con) throws SQLException {
         List<Conductor> conductores = new ArrayList<>();
 

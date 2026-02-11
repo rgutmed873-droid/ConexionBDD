@@ -140,7 +140,7 @@ public class Principal {
                     System.out.println("Nuevo día de la semana");
                     String diaSemanaDiaRuta = sc.nextLine();
 
-                    boolean actualizacionDiaRuta = rutaDAO.actualizarDiaRuta(registroDiaRuta,numConductorDiaRuta,idLugarDiaRuta,diaSemanaDiaRuta);
+                    boolean actualizacionDiaRuta = rutaDAO.actualizarDiaRuta(registroDiaRuta,numConductorDiaRuta,idLugarDiaRuta,diaSemanaDiaRuta,con);
 
                     if (actualizacionDiaRuta) {
                         System.out.println("Día de la ruta actualizado correctamente");
