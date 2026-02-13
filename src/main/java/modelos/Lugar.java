@@ -2,6 +2,7 @@ package modelos;
 
 public class Lugar {
 
+    //ATRIBUTOS PRINCIPALES
     public int idLugar;
     public String ciudad;
     public String sitio;
@@ -10,7 +11,7 @@ public class Lugar {
     public Lugar (){
 
     }
-
+    //CONSTRUCTOR CON ATRIBUTOS
     public Lugar(int idLugar, String ciudad, String sitio, int cp) {
         this.idLugar = idLugar;
         this.ciudad = ciudad;
@@ -18,6 +19,7 @@ public class Lugar {
         this.cp = cp;
     }
 
+    //GETTERS AND SETTERS
     public int getIdLugar() {
         return idLugar;
     }

@@ -208,7 +208,6 @@ public class Principal {
                             System.out.println(c.getNombre() + " " + c.getApellidos());
                         }
                     }
-
                     break;
                     case 0:
                     System.out.println("Saliendo de la aplicación");

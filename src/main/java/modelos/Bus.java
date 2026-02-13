@@ -2,6 +2,7 @@ package modelos;
 
 public class Bus {
 
+    //Atributos principales
     public String registro;
     public String tipo;
     public String licencia;
@@ -10,12 +11,14 @@ public class Bus {
 
     }
 
+    //CONSTRUCTOR DE BUS
     public Bus(String registro, String tipo, String licencia) {
         this.registro = registro;
         this.tipo = tipo;
         this.licencia = licencia;
     }
 
+    //GETTERS AND SETTERS
     public String getRegistro() {
         return registro;
     }
@@ -39,6 +42,7 @@ public class Bus {
     public void setLicencia(String licencia) {
         this.licencia = licencia;
     }
+
 
     @Override
     public String toString() {

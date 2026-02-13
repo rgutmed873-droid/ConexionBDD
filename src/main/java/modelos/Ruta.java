@@ -2,6 +2,7 @@ package modelos;
 
 public class Ruta {
 
+    //ATRIBUTOS PRINCIPALES
     private String registro;
     private int numeroConductor;
     private int idLugar;
@@ -10,7 +11,7 @@ public class Ruta {
     public Ruta(){
 
     }
-
+    //CONSTRUCTOR CON ATRIBUTOS
     public Ruta(String diaSemana, int idLugar, String registro, int numeroConductor) {
         this.diaSemana = diaSemana;
         this.idLugar = idLugar;
@@ -18,6 +19,7 @@ public class Ruta {
         this.numeroConductor = numeroConductor;
     }
 
+    //GETTERS AND SETTERS
     public String getDiaSemana() {
         return diaSemana;
     }

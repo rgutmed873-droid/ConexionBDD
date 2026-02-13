@@ -2,6 +2,7 @@ package modelos;
 
 public class Conductor {
 
+    //ATRIBUTOS PRINCIPALES
     public String nombre;
     public String apellidos;
     public int numeroConductor;
@@ -9,13 +10,14 @@ public class Conductor {
     public Conductor (){
 
     }
-
+    //CONSTRUCTOR DE BUS
     public Conductor(String nombre, String apellidos, int numeroConductor) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.numeroConductor = numeroConductor;
     }
 
+    //GETTERS AND SETTERS
     public String getNombre() {
         return nombre;
     }
