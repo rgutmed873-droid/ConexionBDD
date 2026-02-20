@@ -122,9 +122,9 @@ public class DriverDAOTest {
 
 
         con.createStatement().executeUpdate(
-                "INSERT INTO Conductor VALUES ('B333','Turismo','LIC333')");
+                "INSERT INTO Conductor VALUES ('111','Pepe','Garcia')");
         con.createStatement().executeUpdate(
-                "INSERT INTO Conductor VALUES ('B444','Urbano','LIC444')");
+                "INSERT INTO Conductor VALUES ('112','Miguel','Martinez')");
 
 
         List<Conductor> lista = Collections.singletonList(DriverDAO.consultarConductor(111, con));
