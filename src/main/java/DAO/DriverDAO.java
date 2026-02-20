@@ -14,7 +14,7 @@ public class DriverDAO {
      * @return
      * @throws SQLException
      */
-    public Conductor consultarConductor(int numConductor, Connection con) throws SQLException {
+    public static Conductor consultarConductor(int numConductor, Connection con) throws SQLException {
 
         String sqlConsultaConductor = "select nombre, apellido from CONDUCTOR WHERE numConductor = ?";
 

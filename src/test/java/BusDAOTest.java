@@ -17,7 +17,7 @@ public class BusDAOTest {
     @BeforeAll
     static void conectar() throws SQLException {
         con = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/AUCORSA",
+                "jdbc:mysql://localhost:3306/Aucorsa",
                 "root",
                 ""
         );
@@ -39,7 +39,7 @@ public class BusDAOTest {
     @BeforeEach
     void limpiarTabla() throws SQLException {
         Statement st = con.createStatement();
-        st.executeUpdate("DELETE FROM Routes");
+        st.executeUpdate("DELETE FROM Ruta");
         st.executeUpdate("DELETE FROM Bus");
     }
 
