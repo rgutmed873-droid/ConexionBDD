@@ -5,6 +5,7 @@ import modelos.Conductor;
 import org.junit.jupiter.api.*;
 
 import java.sql.*;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -126,7 +127,7 @@ public class DriverDAOTest {
                 "INSERT INTO Conductor VALUES ('B444','Urbano','LIC444')");
 
 
-        List<Conductor> lista = DriverDAO.consultarConductor(111,con);
+        List<Conductor> lista = Collections.singletonList(DriverDAO.consultarConductor(111, con));
 
 
         assertNotNull(lista);
