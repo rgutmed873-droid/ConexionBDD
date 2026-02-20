@@ -126,7 +126,7 @@ public class DriverDAOTest {
                 "INSERT INTO Conductor VALUES ('B444','Urbano','LIC444')");
 
 
-        List<Bus> lista = BusDAO.consultBus(con);
+        List<Conductor> lista = DriverDAO.consultarConductor(111,con);
 
 
         assertNotNull(lista);
