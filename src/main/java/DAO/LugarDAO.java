@@ -1,63 +1,81 @@
 package DAO;
 
-import db.ConexionDB;
 import modelos.Lugar;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class LugarDAO {
 
-    public static Lugar consultarLugar(Connection con, int idLugar) {
-        // Sentencia SQL parametrizada para buscar un bus por su registro
-        String sql = "SELECT * FROM Lugar WHERE registro = ?;";
+    public boolean insertLugar(Lugar lugar, Connection con) throws SQLException {
+        String sql = "INSERT INTO Lugar (idLugar, Ciudad, sitio, cp) VALUES (?, ?, ?,?)";
 
-
-        // Prepara la sentencia SQL
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idLugar);
+            ps.setInt(1, lugar.getIdLugar());
+            ps.setString(2, lugar.getCiudad());
+            ps.setString(3, lugar.getSitio());
+            ps.setInt(4, lugar.getCp());
 
-
-            // Ejecuta la consulta y obtiene el resultado
-            try (ResultSet rs = ps.executeQuery()) {
-
-
-                // Si se encuentra un registro, crea y devuelve el objeto Bus
-                if (rs.next()) {
-                    int registroBus = rs.getInt(idLugar);
-                    String tipo = rs.getString("tipo");
-                    String licencia = rs.getString("licencia");
-                    return new Lugar(registroBus, tipo, licencia);
-                }
-            }
-        } catch (SQLException e) {
-            // Imprime información de error si ocurre una excepción SQL
-            e.printStackTrace();
+            return ps.executeUpdate() > 0;
         }
-        // Devuelve null si no se encontró el bus o hubo algún error
-        return null;
     }
 
-    /**
-     * Metodo para insertar un nuevo Lugar en la tabla place
-     * @param lugar Atributo para obtener los datos del modelo Lugar
-     * @return
-     * @throws SQLException
-     */
-    public boolean insertarLugar(Lugar lugar) throws SQLException {
+    public ArrayList<Lugar> findAllLugar(Connection con) throws SQLException {
+        String sql = "SELECT * FROM Lugar";
+        ArrayList<Lugar> lista = new ArrayList<>();
 
-        String sqlInsertarLugar = "INSERT INTO LUGAR (idlugar,ciudad,sitio,cp) VALUES (?,?,?,?)";
+        try (PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
 
-        try (Connection con = ConexionDB.getConexion()){
-            PreparedStatement ps = con.prepareStatement(sqlInsertarLugar);
+            while (rs.next()) {
+                Lugar l = new Lugar();
+                l.setIdLugar(rs.getInt("idLugar"));
+                l.setCiudad(rs.getString("ciudad"));
+                l.setSitio(rs.getString("sitio"));
+                l.setCp(rs.getInt("cp"));
+                lista.add(l);
+            }
+        }
+        return lista;
+    }
 
-            ps.setInt(1, lugar.idLugar);
-            ps.setString(2, lugar.ciudad);
-            ps.setString(3, lugar.sitio);
-            ps.setInt(4, lugar.cp);
+    public Lugar findLugar(int idLugar, Connection con) throws SQLException {
+        String sql = "SELECT * FROM Lugar WHERE idLugar = ?";
+        Lugar l = null;
 
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idLugar);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                l = new Lugar();
+                l.setIdLugar(rs.getInt("idLugar"));
+                l.setCiudad(rs.getString("Ciudad"));
+                l.setSitio(rs.getString("Sitio"));
+                l.setCp(rs.getInt("Cp"));
+            }
+        }
+        return l;
+    }
+
+    public boolean updateLugar(int idLugar, String ciudad, String sitio, int cp,Connection con) throws SQLException {
+        String sql = "UPDATE Lugar SET Ciudad = ?, sitio = ?, cp = ? WHERE idLugar = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idLugar);
+            ps.setString(2, ciudad);
+            ps.setString(3, sitio);
+            ps.setInt(4, cp);
+
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public boolean deleteLugar(int idLugar, Connection con) throws SQLException {
+        String sql = "DELETE FROM Lugar WHERE idLugar = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idLugar);
             return ps.executeUpdate() > 0;
         }
     }

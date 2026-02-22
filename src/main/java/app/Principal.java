@@ -6,7 +6,6 @@ import DAO.BusDAO;
 import DAO.DriverDAO;
 import DAO.LugarDAO;
 import DAO.RutaDAO;
-import View.Driverview;
 import db.ConexionDB;
 import modelos.Bus;
 import modelos.Conductor;
@@ -14,7 +13,6 @@ import modelos.Lugar;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,7 +49,7 @@ public class Principal {
 
                     Bus bus = new Bus(registro, tipo, licencia);
 
-                    boolean busInsertado = busDAO.insertarBus(bus,con);
+                    boolean busInsertado = busDAO.insertBus(bus, con);
 
                     if (busInsertado) {
                         System.out.println("Autobus insertado correctamente");
@@ -73,7 +71,7 @@ public class Principal {
 
                     Conductor conductor = new Conductor(nombre, apellido, numConductor);
 
-                    boolean conductorInsertado = driverDAO.insertarConductor(conductor,con);
+                    boolean conductorInsertado = driverDAO.insertConductor(conductor,con);
 
                     if (conductorInsertado) {
                         System.out.println("Conductor insertado correctamente");
@@ -97,7 +95,7 @@ public class Principal {
 
                     Lugar lugar = new Lugar(idLugar, nombreCiudad, sitio, numPostal);
 
-                    boolean lugarInsertado = lugarDAO.insertarLugar(lugar);
+                    boolean lugarInsertado = lugarDAO.insertLugar(lugar,con);
                     if (lugarInsertado) {
                         System.out.println("Lugar insertado correctamente");
                     }else {
@@ -159,7 +157,7 @@ public class Principal {
                     System.out.println("Introduce el registro del bus");
                     String registroBusEliminar = sc.nextLine();
 
-                    boolean rutaEliminar = rutaDAO.eliminarRuta(numConducEliminar,idLugarEliminar,registroBusEliminar,con);
+                    boolean rutaEliminar = rutaDAO.deleteRuta(idLugarEliminar,con);
 
                     if (rutaEliminar) {
                         System.out.println("Ruta eliminada correctamente");
@@ -172,7 +170,7 @@ public class Principal {
                     System.out.println("Dime el número del conductor");
                     int numConductorConsulta = sc.nextInt();
 
-                    Conductor conductorConsulta = driverDAO.consultarConductor(numConductorConsulta,con);
+                    Conductor conductorConsulta = driverDAO.findConductor(numConductorConsulta,con);
 
                     if (conductorConsulta != null) {
                         System.out.println("Conductor: " + conductorConsulta.getNombre() + " " + conductorConsulta.getApellidos());

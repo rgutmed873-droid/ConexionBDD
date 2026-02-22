@@ -1,136 +1,62 @@
-import DAO.BusDAO;
-import DAO.DriverDAO;
-import modelos.Bus;
-import modelos.Conductor;
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.*;
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import DAO.DriverDAO;
+import org.junit.jupiter.api.*;
 
-public class DriverDAOTest {
+import modelos.Conductor;
+
+class ConductorDAOTest {
+
     private static Connection con;
+    private DriverDAO driverDAO;
 
-    /**
-     * Test para realizar la conexión con la base de datos
-     * @throws SQLException
-     */
     @BeforeAll
-    static void conectar() throws SQLException {
+    static void setUpBeforeClass() throws Exception {
         con = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/Aucorsa",
                 "root",
-                ""
-        );
+                "root");
     }
 
-    /**
-     * Metodo para cerrar la base datos
-     * @throws SQLException
-     */
-    @AfterAll
-    static void cerrar() throws SQLException {
-        if (con != null) con.close();
-    }
-
-    /**
-     * Metodo para borras las tablas
-     * @throws SQLException
-     */
     @BeforeEach
     void limpiarTabla() throws SQLException {
-        Statement st = con.createStatement();
-        st.executeUpdate("DELETE FROM Ruta");
-        st.executeUpdate("DELETE FROM Bus");
+        con.createStatement().executeUpdate("DELETE FROM Conductor");
+        driverDAO = new DriverDAO();
     }
 
-    /**
-     * Metodo test para insertar un Conductor en la tabla de Conductor
-     * @throws SQLException
-     */
     @Test
-    @Order(1)
-    @DisplayName("Insertar Conductor en la BD")
-    void testInsertarConductor() throws SQLException {
-
-        //CAMBIAR LOS DATOS
-        PreparedStatement ps = con.prepareStatement(
-                "INSERT INTO Conductor VALUES (?, ?, ?)"
-        );
-        ps.setString(1, "Pepe");
-        ps.setString(2, "Garcia");
-        ps.setInt(3, 111);
-
-
-        int filas = ps.executeUpdate();
-
-
-        assertEquals(1, filas);
+    void testInsertConductor() throws SQLException {
+        Conductor c = new Conductor("Juan","Perez",115);
+        assertTrue(driverDAO.insertConductor(c, con));
     }
 
-    /**
-     * Test para buscar un Conductor existente
-     * @throws SQLException
-     */
     @Test
-    @Order(2)
-    @DisplayName("Buscar Conductor existente")
-    void testBuscarConductorExistente() throws SQLException {
-
-
-        con.createStatement().executeUpdate(
-                "INSERT INTO Conductor VALUES ('Pepe','Garcia',111)"
-        );
-
-
-        Conductor conductor = DriverDAO.consultarConductor(111,con);
-
-
-        assertNotNull(conductor);
-        assertEquals("Pepe", conductor.getNombre());
-        assertEquals("Garcia", conductor.getApellidos());
-        assertEquals(111, conductor.getNumeroConductor());
+    void testFindConductor() throws SQLException {
+        driverDAO.insertConductor(new Conductor("Ana","García",114), con);
+        assertNotNull(driverDAO.findConductor(222, con));
     }
 
-    /**
-     * Test para buscar un Conductor inexistente
-     */
     @Test
-    @Order(3)
-    @DisplayName("Buscar Conductor inexistente devuelve null")
-    void testBuscarConductorInexistente() throws SQLException {
+    void testFindAllConductor() throws SQLException {
+        driverDAO.insertConductor(new Conductor("Luis","Garcia",1), con);
+        driverDAO.insertConductor(new Conductor("Pepe","Barranco",2), con);
 
-
-        Conductor conductor = DriverDAO.consultarConductor(111,con);
-
-
-        assertNull(conductor);
-    }
-
-    /**
-     * Test para mostrar todos los conductor
-     * @throws SQLException
-     */
-    @Test
-    @Order(4)
-    @DisplayName("Mostrar todos los Conductor")
-    void testMostrarTodosLosConductores() throws SQLException {
-
-
-        con.createStatement().executeUpdate(
-                "INSERT INTO Conductor VALUES ('111','Pepe','Garcia')");
-        con.createStatement().executeUpdate(
-                "INSERT INTO Conductor VALUES ('112','Miguel','Martinez')");
-
-
-        List<Conductor> lista = Collections.singletonList(DriverDAO.consultarConductor(111, con));
-
-
-        assertNotNull(lista);
+        ArrayList<Conductor> lista = driverDAO.findAllConductor(con);
         assertEquals(2, lista.size());
+    }
+
+    @Test
+    void testUpdateConductor() throws SQLException {
+        driverDAO.insertConductor(new Conductor("Maria","Martinez",112), con);
+        assertTrue(driverDAO.updateConductor(333,"PedroNuevo","699999999", con));
+    }
+
+    @Test
+    void testDeleteConductor() throws SQLException {
+        driverDAO.insertConductor(new Conductor("Luna","Lopez",122), con);
+        assertTrue(driverDAO.deleteConductor(444, con));
     }
 }
