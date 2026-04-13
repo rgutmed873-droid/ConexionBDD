@@ -1,12 +1,25 @@
+/**
+ * Paquete DriverDAO donde se encuentra las diferentes clases para obtener los datos de la base de datos de la tabla driver
+ * Con estos metodos se puede realizar cualquier operación para la tabla driver
+ */
 package DAO;
 
 import modelos.Conductor;
 
 import java.sql.*;
 import java.util.ArrayList;
-
+/**
+ * Clase Driver DAO donde se ejecutan los metodos creados para
+ */
 public class DriverDAO {
 
+    /**
+     * Metodo INSERTAR UN CONDUCTOR
+     * @param conductor
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public boolean insertConductor(Conductor conductor, Connection con) throws SQLException {
         String sql = "INSERT INTO Conductor (Numero Conductor, nombre, telefono) VALUES (?, ?, ?)";
 
@@ -19,6 +32,12 @@ public class DriverDAO {
         }
     }
 
+    /**
+     * Metodo ENCONTRAR TODOS LOS CONDUCTORES
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Conductor> findAllConductor(Connection con) throws SQLException {
         String sql = "SELECT * FROM Conductor";
         ArrayList<Conductor> lista = new ArrayList<>();
@@ -37,6 +56,13 @@ public class DriverDAO {
         return lista;
     }
 
+    /**
+     * Metodo ENCONTRAR CONDUCTOR
+     * @param numConductor
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public Conductor findConductor(int numConductor, Connection con) throws SQLException {
         String sql = "SELECT * FROM Conductor WHERE numeroConductor = ?";
         Conductor c = null;
@@ -55,6 +81,15 @@ public class DriverDAO {
         return c;
     }
 
+    /**
+     * Metodo para ACTALIZAR CONDUCTOR
+     * @param numConductor
+     * @param nombre
+     * @param apellido
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public boolean updateConductor(int numConductor, String nombre, String apellido, Connection con) throws SQLException {
         String sql = "UPDATE Conductor SET nombre = ?, apellido = ? WHERE numeroConductor = ?";
 
@@ -67,6 +102,13 @@ public class DriverDAO {
         }
     }
 
+    /**
+     * Metodo BORRAR CONDUCTOR
+     * @param numeroConductor
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public boolean deleteConductor(int numeroConductor, Connection con) throws SQLException {
         String sql = "DELETE FROM Conductor WHERE numeroConductor = ?";
 

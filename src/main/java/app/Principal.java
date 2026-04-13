@@ -1,3 +1,6 @@
+/**
+ * Paquete donde se encuentra la clase principal que cuando se ejecuta es lo que ve el usuario
+ */
 package app;
 
 
@@ -16,10 +19,18 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Clase principal donde esta la app de nuestro programa
+ * Aquí es donde vamos añadir solo la llamada a las diferentes clases que tiene sus metodos y ejecuciones
+ */
 public class Principal {
 
-    //Intentar añadir entorno gráfico para así practicar y yo aprender hacerlo
 
+    /**
+     * Principal o main donde esta todo el código donde se ejecuta el programa
+     * @param args Diferentes argumentos para ejectuar la aplicación
+     * @throws SQLException Error que se produce en la conexión con la base de datos
+     */
     public static void main(String[] args) throws SQLException {
         Scanner sc = new Scanner(System.in);
         Connection con = ConexionDB.getConexion();
@@ -220,6 +231,9 @@ public class Principal {
 
     }
 
+    /**
+     * Metodo que muestra el menú de opciones de la aplicación
+     */
     private static void mostrarMenu() {
         System.out.println("===== MENÚ AUCORSA =====");
         System.out.println("¿QUE DESEA REALIZAR?");
@@ -235,70 +249,4 @@ public class Principal {
         System.out.println("0: Saliendo de la aplicación");
     }
 
-
-    /**
-     * Para más adelante para las interfaz
-     */
-//        JFrame miVentana = new JFrame("Curro es mi primera ventana");
-//
-//        miVentana.setTitle("Aucorsa");
-//        miVentana.setBounds(200,200,800,600);
-//        miVentana.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//
-//        JPanel panelPrincipal = new JPanel();
-//
-//        JLabel numConductor = new JLabel("Numero conductor: ");
-//        JTextField txtNumConductor = new JTextField(10);
-//        JButton bntBuscar = new JButton("Buscar");
-//        JLabel mostrarResultado = new JLabel();
-//        mostrarResultado.setText("cargando...");
-//
-//        txtNumConductor.addKeyListener(new KeyListener() {
-//            @Override
-//            public void keyTyped(KeyEvent e) {
-//                if (e.getKeyChar() == 'Q'){
-//                    System.out.println("Vas a salir.");
-//                    System.exit(0);
-//                }
-//            }
-//
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//
-//            }
-//
-//            @Override
-//            public void keyReleased(KeyEvent e) {
-//
-//            }
-//        });
-//
-//        txtNumConductor.addActionListener(e -> {
-//
-//
-//            }
-//        );
-//        bntBuscar.addActionListener(e -> {
-//            String numdriver = txtNumConductor.getText();
-//            JOptionPane.showMessageDialog(null,"Numero de conductor " + numdriver);
-//            int resultado = JOptionPane.showConfirmDialog(null,"¿Estas seguro que quieres guardar?");
-//            switch (resultado)
-//            {
-//                case 0 -> {
-//
-//                }
-//                case 1 -> {}
-//            }
-//
-//         }
-//        );
-//
-//
-//        panelPrincipal.add(numConductor);
-//        panelPrincipal.add(txtNumConductor);
-//        panelPrincipal.add(bntBuscar);
-//        panelPrincipal.add(mostrarResultado);
-//
-//        miVentana.add(panelPrincipal);
-//        miVentana.setVisible(true);
 }

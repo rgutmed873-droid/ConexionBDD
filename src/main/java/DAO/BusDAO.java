@@ -1,3 +1,7 @@
+/**
+ * Paquete BUS DAO donde se encuentra las diferentes clases para obtener los datos de la base de datos de la tabla bus
+ * Con estos metodos se puede realizar cualquier operación para la tabla bus
+ */
 package DAO;
 
 import modelos.Bus;
@@ -5,10 +9,13 @@ import modelos.Bus;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * Clase Bus DAO donde se ejecutan los metodos creados para
+ */
 public class BusDAO {
 
     /**
-     * INSERTAR BUS
+     * INSERTAR BUS en este metodo se añade un bus a la base de datos cuando se lanza desde la aplicación
      */
     public boolean insertBus(Bus bus, Connection con) throws SQLException {
 
@@ -27,7 +34,7 @@ public class BusDAO {
     }
 
     /**
-     * CONSULTAR TODOS LOS BUSES
+     * CONSULTAR TODOS LOS BUSES que hay en la base de datos desde la aplicación
      */
     public ArrayList<Bus> consultBus(Connection con) throws SQLException {
 
@@ -52,7 +59,7 @@ public class BusDAO {
     }
 
     /**
-     * CONSULTAR BUS POR REGISTRO
+     * CONSULTAR BUS POR REGISTRO en el que se le solicita al usuario el número del bus que tiene
      */
     public Bus findBusByRegistro(String registro, Connection con) throws SQLException {
 
@@ -77,7 +84,7 @@ public class BusDAO {
     }
 
     /**
-     * ACTUALIZAR BUS
+     * ACTUALIZAR BUS en este metodo lo que se hace es cambiar datos de la tabla de bus através de la aplicación
      */
     public boolean updateBus(String registro, String tipo, String licencia, Connection con) throws SQLException {
 
@@ -95,7 +102,7 @@ public class BusDAO {
     }
 
     /**
-     * ELIMINAR BUS
+     * ELIMINAR BUS en este metodo eliminamos el registro de un bus en la base de datos
      */
     public boolean deleteBus(String registro, Connection con) throws SQLException {
 

@@ -1,12 +1,25 @@
+/**
+ * Paquete Ruta DAO donde se encuentra las diferentes clases para obtener los datos de la base de datos de la tabla ruta
+ * Con estos metodos se puede realizar cualquier operación para la tabla ruta
+ */
 package DAO;
 
 import modelos.Ruta;
 
 import java.sql.*;
 import java.util.ArrayList;
-
+/**
+ * Clase Ruta DAO donde se ejecutan los metodos creados para
+ */
 public class RutaDAO {
 
+    /**
+     * Metodo para INSERTAR UNA RUTA
+     * @param ruta
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public boolean insertRuta(Ruta ruta, Connection con) throws SQLException {
         String sql = "INSERT INTO Ruta (idRuta, registroBus, dniConductor, idLugar) VALUES (?, ?, ?, ?)";
 
@@ -20,6 +33,12 @@ public class RutaDAO {
         }
     }
 
+    /**
+     * Metodo para ENCONTRAR TODAS LAS RUTAS
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<Ruta> findAllRuta(Connection con) throws SQLException {
         String sql = "SELECT * FROM Ruta";
         ArrayList<Ruta> lista = new ArrayList<>();
@@ -39,6 +58,13 @@ public class RutaDAO {
         return lista;
     }
 
+    /**
+     * Metodo para ENCONTRAR UNA RUTA
+     * @param idRuta
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public Ruta findRuta(int idRuta, Connection con) throws SQLException {
         String sql = "SELECT * FROM Ruta WHERE idRuta = ?";
         Ruta r = null;
@@ -58,6 +84,16 @@ public class RutaDAO {
         return r;
     }
 
+    /**
+     * Metodo para ACTUALIZAR LA RUTA
+     * @param idRuta
+     * @param registroBus
+     * @param dniConductor
+     * @param idLugar
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public boolean updateRuta(int idRuta, String registroBus, int dniConductor, int idLugar, Connection con) throws SQLException {
         String sql = "UPDATE Ruta SET registroBus = ?, dniConductor = ?, idLugar = ? WHERE idRuta = ?";
 
@@ -71,6 +107,13 @@ public class RutaDAO {
         }
     }
 
+    /**
+     * Metodo para BORRAR RUTA
+     * @param idRuta
+     * @param con
+     * @return
+     * @throws SQLException
+     */
     public boolean deleteRuta(int idRuta, Connection con) throws SQLException {
         String sql = "DELETE FROM Ruta WHERE idRuta = ?";
 
