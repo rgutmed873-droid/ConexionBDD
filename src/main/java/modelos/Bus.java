@@ -1,5 +1,11 @@
+/**
+ * El paquete modelos guarda las diferentes tablas que tiene la base de datos con sus datos
+ */
 package modelos;
 
+/**
+ * Clase creada para la tabla de datos de bus
+ */
 public class Bus {
 
     //Atributos principales
@@ -11,7 +17,12 @@ public class Bus {
 
     }
 
-    //CONSTRUCTOR DE BUS
+    /**
+     * Constructor de los atributos de la tabla bus
+     * @param registro Clave primaria que muestra el número de bus
+     * @param tipo Dato de la tabla que muestra el tipo de bus que es
+     * @param licencia Dato de la tabla que muestra el tipo de licencia para circular
+     */
     public Bus(String registro, String tipo, String licencia) {
         this.registro = registro;
         this.tipo = tipo;

@@ -1,5 +1,11 @@
+/**
+ * El paquete modelos guarda las diferentes tablas que tiene la base de datos con sus datos
+ */
 package modelos;
 
+/**
+ * Clase creada para Ruta de la base de datos
+ */
 public class Ruta {
 
     //ATRIBUTOS PRINCIPALES
@@ -8,10 +14,20 @@ public class Ruta {
     private int idLugar;
     private String diaSemana;
 
+    /**
+     * Constructor vacío para añadir nuevos atributos
+     */
     public Ruta(){
 
     }
-    //CONSTRUCTOR CON ATRIBUTOS
+
+    /**
+     * Constructor de los atributos de la tabla Ruta
+     * @param diaSemana Dato de la base de datos que tiene tipo string
+     * @param idLugar Dato clave foranea y primaria de la tabla lugar
+     * @param registro Dato clave foranea y primaria de la tabla bus
+     * @param numeroConductor Dato clave foranea y primaria de la tabla conductor
+     */
     public Ruta(String diaSemana, int idLugar, String registro, int numeroConductor) {
         this.diaSemana = diaSemana;
         this.idLugar = idLugar;

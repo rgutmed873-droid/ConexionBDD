@@ -1,5 +1,11 @@
+/**
+ * El paquete modelos guarda las diferentes tablas que tiene la base de datos con sus datos
+ */
 package modelos;
 
+/**
+ * Clase creada para la tabla lugar de la base de datos
+ */
 public class Lugar {
 
     //ATRIBUTOS PRINCIPALES
@@ -8,10 +14,20 @@ public class Lugar {
     public String sitio;
     public int cp;
 
+    /**
+     * Constructor vacío para añadir nuevos atritubos
+     */
     public Lugar (){
 
     }
-    //CONSTRUCTOR CON ATRIBUTOS
+
+    /**
+     * Constructor de los atributos de la tabla Lugar
+     * @param idLugar Clave primaria de la tabla que da identidad a los lugares por un código numérico
+     * @param ciudad Dato de la tabla de la base de datos tipo string para la ciudad
+     * @param sitio Dato de la tabla de la base de datos tipo string para el sitio
+     * @param cp Dato de la tabla de la base de datos tipo int para el cp de cada ciudad
+     */
     public Lugar(int idLugar, String ciudad, String sitio, int cp) {
         this.idLugar = idLugar;
         this.ciudad = ciudad;
