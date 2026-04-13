@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 /**
- * Clase Bus DAO donde se ejecutan los metodos creados para
+ * Clase Bus DAO donde se ejecutan los metodos creados para realizar diferentes procesos con la base de datos
  */
 public class BusDAO {
 

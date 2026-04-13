@@ -127,7 +127,7 @@ public class Principal {
                     System.out.println("Introduce el día de la semana");
                     String diaSemana = sc.nextLine();
 
-                    boolean insertarRuta = rutaDAO.insertRuta(registroBus,numConductorRuta,idLugarRuta,diaSemana,con);
+                    boolean insertarRuta = rutaDAO.insertRuta(con);
 
                     if (insertarRuta){
                         System.out.println("Ruta insertada correctamente");

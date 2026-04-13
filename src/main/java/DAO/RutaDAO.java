@@ -9,7 +9,7 @@ import modelos.Ruta;
 import java.sql.*;
 import java.util.ArrayList;
 /**
- * Clase Ruta DAO donde se ejecutan los metodos creados para
+ * Clase Ruta DAO donde se ejecutan los metodos creados para realizar diferentes procesos con la base de datos
  */
 public class RutaDAO {
 

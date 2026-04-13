@@ -9,7 +9,7 @@ import modelos.Lugar;
 import java.sql.*;
 import java.util.ArrayList;
 /**
- * Clase Lugar DAO donde se ejecutan los metodos creados para
+ * Clase Lugar DAO donde se ejecutan los metodos creados para realizar diferentes procesos con la base de datos
  */
 public class LugarDAO {
 
