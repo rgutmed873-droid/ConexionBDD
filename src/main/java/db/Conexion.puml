@@ -1,0 +1,9 @@
+@startuml ConexionDB
+class ConexionDB {
+    - static final String URL
+    - static final String USER
+    - static final String PASSWORD
+    + static Connection getConexion()
+}
+note top: Atributos privados estáticos\nMétodo público estático
+@enduml

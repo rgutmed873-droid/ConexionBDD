@@ -1,0 +1,17 @@
+@startuml Conductor
+class Conductor {
+    + String nombre
+    + String apellidos
+    + int numeroConductor
+    + Conductor()
+    + Conductor(String, String, int)
+    + String getNombre()
+    + void setNombre(String)
+    + String getApellidos()
+    + void setApellidos(String)
+    + int getNumeroConductor()
+    + void setNumeroConductor(int)
+    + String toString()
+}
+note top: Atributos públicos\nSin relaciones estructurales
+@enduml

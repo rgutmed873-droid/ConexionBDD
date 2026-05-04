@@ -1,0 +1,11 @@
+@startuml DriverDAO
+class DriverDAO {
+    + boolean insertConductor(Conductor, Connection)
+    + ArrayList<Conductor> findAllConductor(Connection)
+    + Conductor findConductor(int, Connection)
+    + boolean updateConductor(int, String, String, Connection)
+    + boolean deleteConductor(int, Connection)
+}
+DriverDAO ..> Conductor
+DriverDAO ..> Connection
+@enduml

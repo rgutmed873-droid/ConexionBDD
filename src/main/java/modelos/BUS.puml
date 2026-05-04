@@ -1,0 +1,17 @@
+@startuml Bus
+class Bus {
+    + String registro
+    + String tipo
+    + String licencia
+    + Bus()
+    + Bus(String, String, String)
+    + String getRegistro()
+    + void setRegistro(String)
+    + String getTipo()
+    + void setTipo(String)
+    + String getLicencia()
+    + void setLicencia(String)
+    + String toString()
+}
+note top: Clase modelo\nAtributos públicos\nSin herencia ni composición/agregación
+@enduml

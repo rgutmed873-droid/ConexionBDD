@@ -1,0 +1,9 @@
+@startuml Driverview
+class Driverview extends JFrame {
+    + JButton bntBuscar
+    + JTextField txtNumDriver
+    + JLabel etiquetaDriver
+    + Driverview()
+}
+note top: Herencia: Driverview --|> JFrame\nAtributos públicos\nSin composición/agregación
+@enduml

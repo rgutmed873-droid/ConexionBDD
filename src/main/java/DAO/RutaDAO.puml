@@ -1,0 +1,11 @@
+@startuml RutaDAO
+class RutaDAO {
+    + boolean insertRuta(Ruta, Connection)
+    + ArrayList<Ruta> findAllRuta(Connection)
+    + Ruta findRuta(int, Connection)
+    + boolean updateRuta(int, String, int, int, Connection)
+    + boolean deleteRuta(int, Connection)
+}
+RutaDAO ..> Ruta
+RutaDAO ..> Connection
+@enduml

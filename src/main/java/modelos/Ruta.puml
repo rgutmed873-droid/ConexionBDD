@@ -1,0 +1,26 @@
+@startuml Ruta
+class Ruta {
+    - String registro
+    - int numeroConductor
+    - int idLugar
+    - String diaSemana
+    + Ruta()
+    + Ruta(String, int, String, int)
+    + String getDiaSemana()
+    + void setDiaSemana(String)
+    + String getRegistro()
+    + void setRegistro(String)
+    + int getIdLugar()
+    + void setIdLugar(int)
+    + int getNumeroConductor()
+    + void setNumeroConductor(int)
+    + String toString()
+}
+
+' Asociaciones (por clave foránea)
+Ruta ..> Bus : "registro (FK)"
+Ruta ..> Conductor : "numeroConductor (FK)"
+Ruta ..> Lugar : "idLugar (FK)"
+
+note top of Ruta : Atributos privados\nAsociación con Bus, Conductor, Lugar\n(no composición/agregación)
+@enduml

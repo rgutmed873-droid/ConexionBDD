@@ -1,0 +1,19 @@
+@startuml Lugar
+class Lugar {
+    + int idLugar
+    + String ciudad
+    + String sitio
+    + int cp
+    + Lugar()
+    + Lugar(int, String, String, int)
+    + int getIdLugar()
+    + void setIdLugar(int)
+    + String getSitio()
+    + void setSitio(String)
+    + String getCiudad()
+    + void setCiudad(String)
+    + int getCp()
+    + void setCp(int)
+    + String toString()
+}
+@enduml

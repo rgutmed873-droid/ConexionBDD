@@ -1,0 +1,13 @@
+@startuml Principal
+class Principal {
+    - static void mostrarMenu()
+    + static void main(String[])
+}
+Principal ..> BusDAO : crea y usa
+Principal ..> DriverDAO : crea y usa
+Principal ..> LugarDAO : crea y usa
+Principal ..> RutaDAO : crea y usa
+Principal ..> ConexionDB : llama a getConexion()
+Principal ..> Scanner : usa
+note bottom: Dependencias múltiples\nSin relaciones de herencia/composición/agregación
+@enduml

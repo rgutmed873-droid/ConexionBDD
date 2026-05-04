@@ -1,0 +1,11 @@
+@startuml LugarDAO
+class LugarDAO {
+    + boolean insertLugar(Lugar, Connection)
+    + ArrayList<Lugar> findAllLugar(Connection)
+    + Lugar findLugar(int, Connection)
+    + boolean updateLugar(int, String, String, int, Connection)
+    + boolean deleteLugar(int, Connection)
+}
+LugarDAO ..> Lugar
+LugarDAO ..> Connection
+@enduml
