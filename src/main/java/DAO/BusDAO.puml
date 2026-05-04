@@ -1,7 +1,11 @@
 @startuml
 
 class BusDAO {
-    +insertBus(bus: Bus, Connection con): boolean
+    +insertBus(bus: Bus, con: Connection): boolean
+    +consultBus(Connection con): ArrayList
+    +findBusByRegistro(registro: String, con: Connection ): String
+    +updateBus(registro: String, tipo: String, licencia: String, con: Connection): String
+    +deleteBus(registro: String, con: Connection): String
     +addEntry(mmm : Entry): void
     +int setFactory(ddd : string)
 }
