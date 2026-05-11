@@ -1,0 +1,21 @@
+@startuml
+title Encendido de una Cafetera Inteligente
+
+actor Usuario
+
+participant AppMóvil
+participant ControladoraCafetera
+participant Calentador
+participant Molino
+
+Usuario -> AppMóvil : iniciarPreparacion()
+
+AppMóvil -> ControladoraCafetera : preparar()
+
+ControladoraCafetera -> Calentador : calentarAgua()
+
+ControladoraCafetera -> Molino : molerGrano()
+
+ControladoraCafetera -> ControladoraCafetera : abrirValvulaAgua()
+
+@enduml

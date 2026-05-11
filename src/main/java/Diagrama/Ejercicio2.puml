@@ -1,0 +1,21 @@
+@startuml
+title Sistema de Venta de Entradas
+
+actor Cliente
+participant InterfazVenta
+participant Sala
+participant SistemaPago
+
+Cliente -> InterfazVenta : seleccionarPelicula()
+
+InterfazVenta -> Sala : verificarDisponibilidad()
+
+alt Hay asientos disponibles
+
+    Sala -> Sala : reservarAsiento()
+
+    InterfazVenta -> SistemaPago : procesarCobro(monto)
+
+end
+
+@enduml

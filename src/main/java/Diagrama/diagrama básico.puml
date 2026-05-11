@@ -1,0 +1,8 @@
+@startuml
+actor Usuario
+
+usuario --> PortalWeb : Inicio sesion
+PortalWeb --> BD : Existe usuario
+BD --> PortalWeb : Existencia
+PortalWeb --> PortalWeb
+@enduml

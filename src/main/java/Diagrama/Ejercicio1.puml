@@ -1,0 +1,14 @@
+@startuml
+title El cajero automático (Autenticación)
+
+actor Usuario
+participant Cajero
+participant ServidorBanco
+
+Usuario --> Cajero : insertarTarjeta()
+Cajero --> Usuario : solicitarPIN()
+Usuario --> Cajero : introducirPIN(pin)
+Cajero --> ServidorBanco : validar(tarjeta,pin)
+ServidorBanco --> Cajero : válido
+Cajero -> Usuario : mostrarMenu()
+@enduml

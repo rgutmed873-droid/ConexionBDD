@@ -1,0 +1,25 @@
+@startuml
+title Reserva de Libros en Biblioteca
+
+actor Bibliotecario
+
+participant Catalogo
+participant Libro
+participant Prestamo
+
+Bibliotecario -> Catalogo : buscarLibro(ISBN)
+
+Catalogo --> Bibliotecario : libro
+
+Bibliotecario -> Libro : obtenerEstado()
+
+Libro --> Bibliotecario : "Disponible"
+
+alt Libro disponible
+
+    create Prestamo
+    Bibliotecario -> Prestamo : Prestamo(libro,socio)
+
+end
+
+@enduml

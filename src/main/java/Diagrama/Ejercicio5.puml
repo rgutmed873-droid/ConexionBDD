@@ -1,0 +1,19 @@
+@startuml
+title Sistema de Alarma Doméstica
+
+participant SensorMovimiento
+participant CentralAlarma
+participant Camara
+participant ServicioNotificaciones
+
+SensorMovimiento -> SensorMovimiento : detectar()
+
+SensorMovimiento -> CentralAlarma : procesarAlerta()
+
+CentralAlarma -> Camara : capturarImagen()
+
+Camara --> CentralAlarma : foto
+
+CentralAlarma -> ServicioNotificaciones : enviarSMS()
+
+@enduml
